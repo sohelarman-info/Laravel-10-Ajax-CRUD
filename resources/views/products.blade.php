@@ -13,7 +13,9 @@
 
 <div class="container">
 <div class="row">
-    <div class="col-md-4">Category</div>
+    <div class="col-md-4">
+        <a href="#" class="btn btn-success my-3" data-bs-toggle="modal" data-bs-target="#addProductModal">Add Product</a>
+    </div>
     <div class="col-md-8">
         <div class="product-lists">
             <div class="prodact-header text-center my-3">
@@ -54,5 +56,6 @@
 
 
 @include('products_js')
+@include('add_product_modal')
   </body>
 </html>
