@@ -9,20 +9,20 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+                <div class="errorMsg"></div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Product Name</label>
-                    <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Monitor">
-                    <p class="mt-1 text-danger">error</p>
+                    <input type="text" name="name" id="name" class="form-control" id="exampleFormControlInput1" placeholder="Monitor">
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Product Price</label>
-                    <input type="text" name="price" class="form-control" id="exampleFormControlInput1" placeholder="7000">
+                    <input type="text" name="price" id="price" class="form-control" id="exampleFormControlInput1" placeholder="7000">
 
                 </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-primary add_product">Submit</button>
               </div>
             </div>
           </div>
