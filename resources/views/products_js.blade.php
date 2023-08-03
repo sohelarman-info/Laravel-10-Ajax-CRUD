@@ -1,5 +1,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 <script>
     $.ajaxSetup({
         headers: {
@@ -23,6 +25,22 @@
                         $('#addProductForm')[0].reset();
                         $('#addProductModal').modal('hide');
                         $('.table').load(location.href+' .product-item');
+
+                        Command: toastr["success"]("Product Added", "Success")
+
+                        toastr.options = {
+                        "closeButton": true,
+                        "progressBar": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        }
                     }
                 },
                 error: function(err){
@@ -61,6 +79,26 @@
                         $('#UpdateProductForm')[0].reset();
                         $('#UpdateProductModal').modal('hide');
                         $('.table').load(location.href+' .product-item');
+
+                        Command: toastr["success"]("Product Updated", "Success")
+
+                        toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        }
                     }
                 },
                 error: function(err){
@@ -84,6 +122,26 @@
                     success: function(res){
                         if(res.status == 'success'){
                             $('.table').load(location.href+' .product-item');
+                        }
+
+                        Command: toastr["success"]("Product Deleted", "Success")
+
+                        toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
                         }
                     }
                 })

@@ -7,6 +7,8 @@
     <title>Ajax CRUD</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
   </head>
   <body>
 
@@ -86,5 +88,6 @@
 @include('products_js')
 @include('add_product_modal')
 @include('update_product_modal')
-  </body>
+{!! Toastr::message() !!}
+</body>
 </html>
