@@ -17,6 +17,10 @@
             method: "post",
             data: {name:name, price:price},
             success: function(res){
+                if(res.status == 'success'){
+                    $('#addProductForm')[0].reset();
+                    $('#addProductModal').modal('hide');
+                }
             },
             error: function(err){
                 let error = err.responseJSON;
