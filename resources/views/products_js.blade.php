@@ -8,28 +8,68 @@
     });
 </script>
 <script>
-    $(document).on('click', '.add_product',function(e){
-        e.preventDefault();
-        let name = $('#name').val();
-        let price = $('#price').val();
-        $.ajax({
-            url: "{{ route('AddProduct') }}",
-            method: "post",
-            data: {name:name, price:price},
-            success: function(res){
-                if(res.status == 'success'){
-                    $('#addProductForm')[0].reset();
-                    $('#addProductModal').modal('hide');
-                    $('.table').load(location.href+' .product-item');
+    $(document).ready(function(){
+        // Product add
+        $(document).on('click', '.add_product',function(e){
+            e.preventDefault();
+            let name = $('#name').val();
+            let price = $('#price').val();
+            $.ajax({
+                url: "{{ route('AddProduct') }}",
+                method: "post",
+                data: {name:name, price:price},
+                success: function(res){
+                    if(res.status == 'success'){
+                        $('#addProductForm')[0].reset();
+                        $('#addProductModal').modal('hide');
+                        $('.table').load(location.href+' .product-item');
+                    }
+                },
+                error: function(err){
+                    let error = err.responseJSON;
+                    $.each(error.errors, function(index, value){
+                        $('.errorMsg').append("<span class='text-danger'>"+value+"</span><br>");
+                    });
                 }
-            },
-            error: function(err){
-                let error = err.responseJSON;
-                $.each(error.errors, function(index, value){
-                    $('.errorMsg').append("<span class='text-danger'>"+value+"</span><br>");
-                });
-            }
+            })
         })
-        // console.log(name+" "+price)
+
+        // show product value in update form
+        $(document).on('click', '.update-product-form',function(e){
+            let id = $(this).data('id')
+            let name = $(this).data('name')
+            let price = $(this).data('price')
+
+            $('#update_id').val(id)
+            $('#update_name').val(name)
+            $('#update_price').val(price)
+        })
+
+        // Product Update
+        $(document).on('click', '.update_product',function(e){
+            e.preventDefault();
+            let update_id = $('#update_id').val();
+            let update_name = $('#update_name').val();
+            let update_price = $('#update_price').val();
+
+            $.ajax({
+                url: "{{ route('UpdateProduct') }}",
+                method: "post",
+                data: {update_id:update_id, update_name:update_name, update_price:update_price},
+                success: function(res){
+                    if(res.status == 'success'){
+                        $('#UpdateProductForm')[0].reset();
+                        $('#UpdateProductModal').modal('hide');
+                        $('.table').load(location.href+' .product-item');
+                    }
+                },
+                error: function(err){
+                    let error = err.responseJSON;
+                    $.each(error.errors, function(index, value){
+                        $('.errorMsg').append("<span class='text-danger'>"+value+"</span><br>");
+                    });
+                }
+            })
+        })
     })
 </script>
