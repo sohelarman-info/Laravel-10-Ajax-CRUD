@@ -57,9 +57,10 @@
                         </tr>
                         @endforeach
                     </tbody>
-                  </table>
-                  {!! $products->links() !!}
+                </table>
+                {!! $products->links() !!}
             </div>
+
         </div>
     </div>
     <div class="col-md-4">
