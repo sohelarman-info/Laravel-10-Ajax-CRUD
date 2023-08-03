@@ -20,6 +20,7 @@
                 if(res.status == 'success'){
                     $('#addProductForm')[0].reset();
                     $('#addProductModal').modal('hide');
+                    $('.table').load(location.href+' .product-item');
                 }
             },
             error: function(err){

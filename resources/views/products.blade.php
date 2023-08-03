@@ -32,21 +32,24 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td class="text-center">
-                            <a href="#" class="btn btn-success btn-sm">
-                                <i class="las la-edit"></i>
-                            </a>
-                            <a href="#" type="button" class="btn btn-danger btn-sm">
-                                <i class="las la-trash-alt"></i>
-                            </a>
-                        </td>
-                      </tr>
+                        @foreach ($products as $key=>$product)
+                        <tr>
+                          <th scope="row">{{ $key+1 }}</th>
+                          <td>{{ $product->name }}</td>
+                          <td>{{ $product->price }}</td>
+                          <td class="text-center">
+                              <a href="#" class="btn btn-success btn-sm">
+                                  <i class="las la-edit"></i>
+                              </a>
+                              <a href="#" type="button" class="btn btn-danger btn-sm">
+                                  <i class="las la-trash-alt"></i>
+                              </a>
+                          </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                   </table>
+                  {!! $products->links() !!}
             </div>
         </div>
     </div>
