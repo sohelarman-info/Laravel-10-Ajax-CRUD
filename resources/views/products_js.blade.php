@@ -71,5 +71,25 @@
                 }
             })
         })
+
+        // Product Deleted
+        $(document).on('click', '.delete_product',function(e){
+            e.preventDefault();
+            let product_id = $(this).data('id');
+            if(confirm('Are you sure delete this product?')){
+                $.ajax({
+                    url: "{{ route('deleteProduct') }}",
+                    method: "post",
+                    data: {product_id:product_id},
+                    success: function(res){
+                        if(res.status == 'success'){
+                            $('.table').load(location.href+' .product-item');
+                        }
+                    }
+                })
+            }
+
+
+        })
     })
 </script>

@@ -13,9 +13,6 @@
 
 <div class="container">
 <div class="row">
-    <div class="col-md-4">
-        <a href="#" class="btn btn-success my-3" data-bs-toggle="modal" data-bs-target="#addProductModal">Add Product</a>
-    </div>
     <div class="col-md-8">
         <div class="product-lists">
             <div class="prodact-header text-center my-3">
@@ -48,7 +45,10 @@
                               >
                                   <i class="las la-edit"></i>
                               </a>
-                              <a href="#" type="button" class="btn btn-danger btn-sm">
+                              <a href="#" type="button"
+                              class="btn btn-danger btn-sm delete_product"
+                              data-id="{{ $product->id }}"
+                              >
                                   <i class="las la-trash-alt"></i>
                               </a>
                           </td>
@@ -57,6 +57,24 @@
                     </tbody>
                   </table>
                   {!! $products->links() !!}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="text-center">
+            <a href="#" class="btn btn-success my-3" data-bs-toggle="modal" data-bs-target="#addProductModal">Add Product</a>
+        </div>
+        <div class="border p-3">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Product Name</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="product name">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Product Price</label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="200">
+            </div>
+            <div class="mb-3 d-grid gap-2">
+                <button type="button" class="btn btn-success fluid">Add Product</button>
             </div>
         </div>
     </div>
