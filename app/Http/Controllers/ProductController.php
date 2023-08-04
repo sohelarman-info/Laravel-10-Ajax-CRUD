@@ -73,4 +73,17 @@ class ProductController extends Controller
         $products = Product::latest()->paginate(5);
         return view('products_paginate', compact('products'))->render();
     }
+
+    // search functionality
+        public function searchProduct(Request $request){
+        $products = Product::where('name', 'like', '%'.$request->search.'%')->orWhere('price', 'like', '%'.$request->search.'%')->orderBy('id', 'desc')->paginate(5);
+
+        if($products->count() >= 1){
+            return view('products_paginate', compact('products'))->render();
+        }else{
+            return response()->json([
+                'status' => 'nothing_found',
+            ]);
+        }
+    }
 }

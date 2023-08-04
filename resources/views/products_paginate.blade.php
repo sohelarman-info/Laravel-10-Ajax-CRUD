@@ -5,6 +5,7 @@
             <th scope="col" class="text-center">SL</th>
             <th scope="col">Name</th>
             <th scope="col" class="text-center">Price</th>
+            <th scope="col" class="text-center">Created</th>
             <th scope="col" class="text-center">Action</th>
           </tr>
         </thead>
@@ -14,6 +15,7 @@
               <th scope="row" class="text-center">{{ $key+1 }}</th>
               <td>{{ $product->name }}</td>
               <td class="text-center">{{ $product->price }}</td>
+              <td class="text-center">{{ $product->created_at->diffForHumans() }}</td>
               <td class="text-center">
                   <a href="#"
                     class="btn btn-success btn-sm update-product-form"

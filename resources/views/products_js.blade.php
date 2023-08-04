@@ -11,7 +11,7 @@
 </script>
 <script>
     $(document).ready(function(){
-        // Product add
+        // Product add from modal
         $(document).on('click', '.add_product',function(e){
             e.preventDefault();
             let name = $('#name').val();
@@ -24,7 +24,47 @@
                     if(res.status == 'success'){
                         $('#addProductForm')[0].reset();
                         $('#addProductModal').modal('hide');
-                        $('.table').load(location.href+' .product-item');
+                        $('.product-item').load(location.href+' .product-item');
+
+                        Command: toastr["success"]("Product Added", "Success")
+
+                        toastr.options = {
+                        "closeButton": true,
+                        "progressBar": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        }
+                    }
+                },
+                error: function(err){
+                    let error = err.responseJSON;
+                    $.each(error.errors, function(index, value){
+                        $('.errorMsg').append("<span class='text-danger'>"+value+"</span><br>");
+                    });
+                }
+            })
+        })
+        // Product add from Blade
+        $(document).on('click', '.add_product_from_blade',function(e){
+            e.preventDefault();
+            let name = $('#product_name').val();
+            let price = $('#product_price').val();
+            $.ajax({
+                url: "{{ route('AddProduct') }}",
+                method: "post",
+                data: {name:name, price:price},
+                success: function(res){
+                    if(res.status == 'success'){
+                        $('#addProductForm')[0].reset();
+                        $('#addProductModal').modal('hide');
+                        $('.product-item').load(location.href+' .product-item');
 
                         Command: toastr["success"]("Product Added", "Success")
 
@@ -121,7 +161,7 @@
                     data: {product_id:product_id},
                     success: function(res){
                         if(res.status == 'success'){
-                            $('.table').load(location.href+' .product-item');
+                            $('.product-item').load(location.href+' .product-item');
                         }
 
                         Command: toastr["success"]("Product Deleted", "Success")
@@ -161,9 +201,27 @@
             $.ajax({
                 url: "/pagination/paginate-data?page="+page,
                 success:function(res){
-                    $('.product-item').html(res)
+                    $('.product-item').html(res);
                 }
             })
         }
-    })
+
+        // search functionality
+        $(document).on('keyup', function(e){
+            e.preventDefault();
+            let search = $('#search').val();
+
+            $.ajax({
+                url:"{{ route('searchProduct') }}",
+                method:'GET',
+                data: {search:search},
+                success:function(res){
+                    $('.product-item').html(res);
+                    if(res.status == 'nothing_found'){
+                        $('.product-item').html('<div class="text-danger text-center">'+'Search Result Not Found'+'</div>');
+                    }
+                }
+            });
+        });
+    });
 </script>
